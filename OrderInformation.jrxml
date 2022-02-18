@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="NewSoloSubReportjrxml" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e8c96949-5976-41ea-961e-29c4c6837723">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[cHJvZHVjdHMgLDM1NiwxNSwyNTdiNWM2Yi02ZTc5LTQ0NDYtYWZkNS1lNDBlMzhlMWIxNjE7b3Jk
+ZXJzICwxNSwxNSw4NzJhMGM0OS02MTdmLTRiOWItYTNjYy1hY2IyMjQ0NzU5MjA7Y3VzdG9tZXJz
+ICwxMDYsMTUsMWRiNTY5MDEtMDU3Zi00OTljLWJjMmItMTNjOWUyMjMzNjg4O29yZGVyZGV0YWls
+cyAsMjIyLDE1LGQ5MTQ1MDhkLTk2NDItNDc4Mi04YTc3LTliYmNiNjkzNDY2YTs=]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ClassicModels"/>
+	<queryString language="SQL">
+		<![CDATA[select o.orderNumber,o.orderDate,c.customerName,p.productName,od.priceEach,od.quantityOrdered, od.priceEach*od.quantityOrdered as total
+from orders o
+inner join customers c
+on o.customerNumber = c.customerNumber
+inner join orderdetails od
+on o.orderNumber = od.orderNumber
+inner join products p
+on od.productCode = p.productCode
+where o.orderNumber=10100]]>
+	</queryString>
+	<field name="orderNumber" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="orderNumber"/>
+		<property name="com.jaspersoft.studio.field.label" value="orderNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="orderDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="orderDate"/>
+		<property name="com.jaspersoft.studio.field.label" value="orderDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="customerName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="customerName"/>
+		<property name="com.jaspersoft.studio.field.label" value="customerName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customers"/>
+	</field>
+	<field name="productName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="productName"/>
+		<property name="com.jaspersoft.studio.field.label" value="productName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="products"/>
+	</field>
+	<field name="priceEach" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="priceEach"/>
+		<property name="com.jaspersoft.studio.field.label" value="priceEach"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orderdetails"/>
+	</field>
+	<field name="quantityOrdered" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="quantityOrdered"/>
+		<property name="com.jaspersoft.studio.field.label" value="quantityOrdered"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orderdetails"/>
+	</field>
+	<field name="total" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="total"/>
+		<property name="com.jaspersoft.studio.field.label" value="total"/>
+	</field>
+	<variable name="Total_Sum" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="58" splitType="Stretch">
+			<staticText>
+				<reportElement x="200" y="10" width="180" height="30" uuid="91d01395-8882-4b85-b39f-6d0c2ebaa71f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Order Information]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="20" width="80" height="20" uuid="b4237bce-b7b6-4dcd-98f5-16852d48a0e8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph lineSpacingSize="1.0"/>
+				</textElement>
+				<text><![CDATA[Order Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="80" height="20" uuid="c46371a9-bff8-434d-8cc0-c1ce7ee19c95">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph lineSpacingSize="1.0"/>
+				</textElement>
+				<text><![CDATA[Order No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="40" width="80" height="20" uuid="233dcc95-8f71-4033-b08e-15c22617159a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph lineSpacingSize="1.0"/>
+				</textElement>
+				<text><![CDATA[Customer Name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="260" y="0" width="150" height="20" uuid="196e78cd-16eb-4d8c-989f-7a0a01cd8ee5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{orderNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="20" width="150" height="20" uuid="963ffda6-d3e4-4a06-9717-65d21a9610ab">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{orderDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="40" width="150" height="20" uuid="134bd38f-4ad7-460f-a042-289f45ed2956">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{customerName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="110" y="84" width="20" height="20" uuid="111a27d2-4150-4ff4-bda8-b65b1e26da6e"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="84" width="160" height="20" uuid="a642cca6-3f8e-438c-822b-4a4cbc564558">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="3">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="84" width="110" height="20" uuid="936878a0-5bde-4b8b-a09e-086d1b221007">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unit Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="84" width="30" height="20" uuid="a7db3106-915c-4f3c-ac23-724e6bfd78a2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="84" width="60" height="20" uuid="baf83083-db6e-42e0-a2b1-724aff13c0de">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="130" y="0" width="160" height="20" uuid="9fcc1895-5006-4e5b-930e-205a765a5d09">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="3">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{productName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="110" height="20" uuid="b7a35835-dd45-4a87-bed4-39938e62a3f9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{priceEach}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="30" height="20" uuid="58e7c2d9-8945-46cb-9fe8-f724abceff1c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{quantityOrdered}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="0" width="60" height="20" uuid="023a679a-e796-4630-8952-6606997b0724">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="0" width="20" height="20" uuid="b7b53d4f-a3c2-4d36-abf1-d8ab53f5e118"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="51" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="110" y="0" width="380" height="30" uuid="96a3e3dc-5225-4a38-bbe4-c0bd48f0e4c4"/>
+				<box rightPadding="3">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{Total_Sum}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
